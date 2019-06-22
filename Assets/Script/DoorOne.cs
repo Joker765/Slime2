@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DoorOne : MonoBehaviour
 {
+    private int count=0;
 
     public Transform toDoor;
     public GameObject tips;
@@ -23,6 +24,8 @@ public class DoorOne : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+    
+        
         if (collision.tag == "Player")
         {
             if (collision.GetComponent<PlayerState>().key)
@@ -32,6 +35,7 @@ public class DoorOne : MonoBehaviour
             }
             else
             {
+                print(count++);
                 tips.SetActive(true);
             }
         }
