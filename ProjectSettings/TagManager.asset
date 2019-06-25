@@ -6,6 +6,9 @@ TagManager:
   tags:
   - ground
   - key
+  - dragon
+  - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ground
   - 
   - 
   - 

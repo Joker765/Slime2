@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5680531577392010566}
   - component: {fileID: 5680531577392010567}
   - component: {fileID: 5680531577392010560}
-  - component: {fileID: 5680531577392010565}
   - component: {fileID: 5680531577392010619}
   - component: {fileID: 5680531577392010564}
   - component: {fileID: 5680531577392010618}
+  - component: {fileID: 1471915289}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5680531577392010561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 33.03, y: 3.07, z: 0}
-  m_LocalScale: {x: 0.19, y: 0.19, z: 0.2}
+  m_LocalScale: {x: 0.19, y: 0.19, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,18 +103,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5680531577392010565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5680531577392010561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77a385181ce5da45820e1478f83f07a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &5680531577392010619
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -165,3 +153,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 0
+  HpSlider: {fileID: 0}
+  MpSlider: {fileID: 0}
+--- !u!114 &1471915289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680531577392010561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77a385181ce5da45820e1478f83f07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ceiling: 0
