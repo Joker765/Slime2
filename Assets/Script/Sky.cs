@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Sky : MonoBehaviour
 {
-    public Transform birthPlace;
+    private GameObject birthPlace;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        birthPlace = GameObject.Find("BirthPlace");
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            collider.transform.position = birthPlace.position;
+            collider.transform.position = birthPlace.transform.position;
         }
     }
 

@@ -7,6 +7,8 @@ public class PlayerState : MonoBehaviour
 {
     private float Hp;
     private float Mp;
+    public GameObject fist;
+
     public bool key;
     public Slider HpSlider;
     public Slider MpSlider;
@@ -14,6 +16,7 @@ public class PlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         Hp = 80;
         Mp = 100;
         key = false;
@@ -24,6 +27,8 @@ public class PlayerState : MonoBehaviour
     {
         HpSlider.value = Hp / 100;
         MpSlider.value = Mp / 100;
+
+        Fire();
     }
 
     public void ChangeHp(int change)
@@ -31,4 +36,13 @@ public class PlayerState : MonoBehaviour
         Hp +=change;
     }
 
+
+    private void Fire()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            fist.SetActive(true);
+        }
+    }
 }

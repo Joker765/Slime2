@@ -7,24 +7,24 @@ public class PlayerMove : MonoBehaviour
     public bool ceiling;
 
     private Vector2 lastPlace;
-    private bool down;
     private bool climb;
     private int jump;
     private float jumpTime;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rg;
 
     void Start()
     {
         ceiling = false;
         climb = false;
-        down = true;
 
         lastPlace = GameObject.Find("BirthPlace").transform.position;
         jumpTime = 0f;
         jump = 2;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rg = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -40,35 +40,34 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             climb = true;
-            GetComponent<Rigidbody2D>().gravityScale = 0;
+            rg.gravityScale = 0;
 
         }
         else
         {
             climb = false;
-            GetComponent<Rigidbody2D>().gravityScale = 2;
+            rg.gravityScale = 2;
         }
     }
 
-  
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 acc = Vector3.zero;     //零向量
 
-        if (Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             acc.x = -0.1f;
             if (climb) this.transform.localScale = new Vector3(0.21f, -0.21f, 1);
             else this.transform.localScale = new Vector3(0.21f, 0.21f, 1);
             if (spriteRenderer.flipX == true) spriteRenderer.flipX = false;
-            
-        } else
+        }
+        else
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             acc.x = 0.1f;
             if (climb) this.transform.localScale = new Vector3(0.21f, -0.21f, 1);
             else this.transform.localScale = new Vector3(0.21f, 0.21f, 1);
-            if (spriteRenderer.flipX == false) spriteRenderer.flipX = true;  
+            if (spriteRenderer.flipX == false) spriteRenderer.flipX = true;
         }
 
         Vector3 diff;
@@ -78,32 +77,25 @@ public class PlayerMove : MonoBehaviour
         animator.SetFloat("velocityX", Mathf.Abs(acc.x));
 
         if (ceiling) Climb();
-        else {
+        else
+        {
             Jump();
             climb = false;
-            GetComponent<Rigidbody2D>().gravityScale = 2;
+            rg.gravityScale = 2;
         }
 
         if (climb) this.transform.localScale = new Vector3(0.19f, -0.19f, 1);
         else this.transform.localScale = new Vector3(0.19f, 0.19f, 1);
 
         Vector2 Pos = this.transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(Pos, Pos + new Vector2(0, -1), 0.7f, 1<<8);
-        Debug.DrawLine(Pos, Pos + new Vector2(0, -0.7f));
-           if (hit.transform != null)
-           {
-               print(hit.transform.name);
-               down = true;
-               animator.SetBool("jump", false);
-           }
-           else down = false;
-
-    }
-
-
-    private void FixedUpdate()
-    {
-        if (!down)
+        RaycastHit2D hit = Physics2D.Raycast(Pos, new Vector2(0, -1), 0.6f, 1 << 8);
+        Debug.DrawRay(Pos, new Vector2(0, -0.6f), Color.red);
+        if (hit.transform != null)
+        {
+            print(hit.transform.name);
+            animator.SetBool("jump", false);
+        }
+        else 
         {
             if (this.transform.position.y - lastPlace.y > 0.01f)
                 animator.SetBool("jump", true);    

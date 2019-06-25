@@ -11451,7 +11451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1681203895
 Transform:
   m_ObjectHideFlags: 0
@@ -12285,7 +12285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0548362ddaca24ca7a57a5fe0df63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birthPlace: {fileID: 704025950}
 --- !u!1001 &5680531577142054491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12363,5 +12362,10 @@ PrefabInstance:
       propertyPath: MpSlider
       value: 
       objectReference: {fileID: 146872132}
+    - target: {fileID: 5680531577392010618, guid: c85941f69c868494eb811a466b0c8c3e,
+        type: 3}
+      propertyPath: fist
+      value: 
+      objectReference: {fileID: 1681203894}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c85941f69c868494eb811a466b0c8c3e, type: 3}
