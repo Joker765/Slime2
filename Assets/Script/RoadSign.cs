@@ -14,7 +14,6 @@ public class RoadSign : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        print("zjk???");
         if (collider.tag == "Player")
         {
             SceneManager.LoadScene(sceneId);
