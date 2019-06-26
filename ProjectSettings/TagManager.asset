@@ -9,6 +9,7 @@ TagManager:
   - dragon
   - Fire
   - Enemy
+  - bullet
   layers:
   - Default
   - TransparentFX

@@ -92,7 +92,6 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(Pos, new Vector2(0, -0.6f), Color.red);
         if (hit.transform != null)
         {
-            print(hit.transform.name);
             animator.SetBool("jump", false);
         }
         else 

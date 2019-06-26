@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Hitenemy1Move : MonoBehaviour
 {
-    public GameObject player;//史莱姆
+    private GameObject player;//史莱姆
     //攻击变量
-    public float hitPower;//攻击力
-    public float hp;//血量
+    public float hitPower=0.5f;//攻击力
+    public float hp=100;//血量
 
 
 
@@ -28,6 +28,7 @@ public class Hitenemy1Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         coll = GetComponent<Collider2D>();
         ani = GetComponent<Animator>();
         rigEnemy1 = GetComponent<Rigidbody2D>();
@@ -95,10 +96,7 @@ public class Hitenemy1Move : MonoBehaviour
     {
         //   rigEnemy1.velocity = new Vector2(1,0);
         //向右移动
-       
-            rigEnemy1.MovePosition(Vector2.Lerp(transform.position, transform.position+new Vector3(1f,0,0), speed * Time.deltaTime));
-          
-        
+            rigEnemy1.MovePosition(Vector2.Lerp(transform.position, transform.position+new Vector3(1f,0,0), speed * Time.deltaTime));       
     }
     public void MoveLeft()
     {
@@ -107,8 +105,6 @@ public class Hitenemy1Move : MonoBehaviour
         //向左移动 同时检测 左边界是否存在
        
         rigEnemy1.MovePosition(Vector2.Lerp(transform.position, transform.position+new Vector3(-1f,0,0), speed * Time.deltaTime));
-
-
     }
     public void Attack()
     {
@@ -161,11 +157,11 @@ public class Hitenemy1Move : MonoBehaviour
         coll.enabled = false;
         int hitNumber;
         RaycastHit2D[] ray = new RaycastHit2D[1];
-        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + right, ray, 1 << LayerMask.NameToLayer("GroundColi"));
+        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + right, ray, 1 << LayerMask.NameToLayer("ground"));
         coll.enabled = true;
         if (ray[0].transform != null)
         {
-            if (ray[0].transform.name != "Ground") { checkR = false; rightMove = false; }
+            if (ray[0].transform.tag != "ground") { checkR = false; rightMove = false; }
             else checkR = true;
         }
         else { checkR = false; rightMove = false; }
@@ -177,11 +173,11 @@ public class Hitenemy1Move : MonoBehaviour
         coll.enabled = false;
         int hitNumber;
         RaycastHit2D[] ray = new RaycastHit2D[100];
-        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + left, ray, 1 << LayerMask.NameToLayer("GroundColi"));
+        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + left, ray, 1 << LayerMask.NameToLayer("ground"));
         coll.enabled = true;
         if (ray[0].transform != null)
         {
-            if (ray[0].transform.name != "Ground") { checkL = false; rightMove = true; }
+            if (ray[0].transform.tag != "ground") { checkL = false; rightMove = true; }
             else checkL = true;
         }
         else { checkL = false; rightMove = true; }
@@ -194,7 +190,7 @@ public class Hitenemy1Move : MonoBehaviour
         coll.enabled = false;
         int hitNumber;
         RaycastHit2D[] ray = new RaycastHit2D[1];
-        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + right, ray, 1 << LayerMask.NameToLayer("GroundColi"));
+        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + right, ray, 1 << LayerMask.NameToLayer("ground"));
         coll.enabled = true;
         if (ray[0].transform == null)
         {
@@ -208,7 +204,7 @@ public class Hitenemy1Move : MonoBehaviour
         coll.enabled = false;
         int hitNumber;
         RaycastHit2D[] ray = new RaycastHit2D[1];
-        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + left, ray, 1 << LayerMask.NameToLayer("GroundColi"));
+        hitNumber = Physics2D.LinecastNonAlloc(transform.position, transform.position + left, ray, 1 << LayerMask.NameToLayer("ground"));
         coll.enabled = true;
         if (ray[0].transform == null )
         {
@@ -255,11 +251,21 @@ public class Hitenemy1Move : MonoBehaviour
         }
     }
 
-    public void SlimeAttack()
+    public void TakeDamage(float damage)
     {
-        hp--;
+        hp -= damage;
+        die();
     }
-    public void die()
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "bullet")
+        {
+            TakeDamage(40);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void die()
     {
         if (hp <= 0)
         {

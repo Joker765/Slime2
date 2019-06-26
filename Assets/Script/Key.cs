@@ -12,16 +12,11 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("zjkkkk");
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerState>().key = true;
             Destroy(this.gameObject);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

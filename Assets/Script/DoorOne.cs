@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DoorOne : MonoBehaviour
 {
-    private int count=0;
 
     public Transform toDoor;
     public GameObject tips;
@@ -31,11 +30,10 @@ public class DoorOne : MonoBehaviour
             if (collision.GetComponent<PlayerState>().key)
             {
                 collision.transform.position = toDoor.position;
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else
             {
-                print(count++);
                 tips.SetActive(true);
             }
         }

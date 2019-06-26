@@ -16,7 +16,12 @@ public class Sky : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+          
             collider.transform.position = birthPlace.transform.position;
+        }
+       else if (collider.tag == "bullet")
+        {
+            Destroy(collider.gameObject);
         }
     }
 
