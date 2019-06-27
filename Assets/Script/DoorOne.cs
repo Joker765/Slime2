@@ -8,6 +8,7 @@ public class DoorOne : MonoBehaviour
 
     public Transform toDoor;
     public GameObject tips;
+    public float angleSpeed=10f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class DoorOne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(-Vector3.forward, Time.deltaTime * angleSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

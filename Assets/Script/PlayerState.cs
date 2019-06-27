@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerState : MonoBehaviour
 {
     private float Hp;
     private float Mp;
+    private float telescopeTime;
     private GameObject bullet;
     private SpriteRenderer spriteRenderer;
     private bool shieldOn;
+    private GameObject viewField;
 
     public bool key;
     public bool shield;
+    public bool telescope;
     public Slider HpSlider;
     public Slider MpSlider;
     public GameObject leftShield;
@@ -22,12 +26,15 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         bullet = Resources.Load("bullet") as GameObject;
+        viewField = GameObject.Find("CM vcam1");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        telescopeTime = 0f;
         Hp = 100;
         Mp = 100;
         key = false;
         shield = false;
         shieldOn = false;
+        telescope = false;
     }
 
     // Update is called once per frame
@@ -55,6 +62,12 @@ public class PlayerState : MonoBehaviour
             rightShield.SetActive(false);
         }
 
+        if(telescope&& Input.GetKeyDown(KeyCode.T))
+        {
+            telescope = false;
+            viewField.GetComponent<CinemachineVirtualCamera>().m_Lens = new LensSettings(40f, 9f, 0.1f, 5000f, 0, false, 1);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && !shieldOn)
             if (Mp >= 10)
             {
@@ -70,6 +83,7 @@ public class PlayerState : MonoBehaviour
            Hp += change / 4;
         }
         else  Hp +=change;
+        if (Hp < 0) Hp = 0;
     }
 
     public void ChangeMp(float change)

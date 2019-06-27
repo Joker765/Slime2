@@ -120,7 +120,7 @@ public class PlayerMove : MonoBehaviour
             if (jump == 0)
             {
                 jumpTime += Time.deltaTime;
-                if (jumpTime > 4f) jump = 2;
+                if (jumpTime > 3f) jump = 2;
             }
             else jumpTime = 0f;
 
