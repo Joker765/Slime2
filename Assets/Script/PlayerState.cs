@@ -72,6 +72,10 @@ public class PlayerState : MonoBehaviour
         else  Hp +=change;
     }
 
+    public void ChangeMp(float change)
+    {
+          Mp += change;
+    }
 
     private void Fire()
     {

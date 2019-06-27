@@ -28,7 +28,7 @@ public class GunnerController : MonoBehaviour
         attackTime = 4.0f;//攻击间隔
         attackTimes = 0;
         attackPause = 0;
-        hp = 80;
+        hp = 240;
     }
 
     // Update is called once per frame
@@ -130,6 +130,16 @@ public class GunnerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "bullet")
+        {
+            Damage(40);
+            Destroy(other.gameObject);
+        }
+    }
+
     //受伤函数
     private void Damage(int hurt)
     {

@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\blueBottle.cs" />
      <Compile Include="Assets\Cinemachine\Base\Runtime\Behaviours\CinemachineBlendListCamera.cs" />
      <Compile Include="Assets\Cinemachine\Base\Runtime\Behaviours\CinemachineBrain.cs" />
      <Compile Include="Assets\Cinemachine\Base\Runtime\Behaviours\CinemachineClearShot.cs" />
@@ -106,12 +107,10 @@
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
-     <Compile Include="Assets\Coin.cs" />
      <Compile Include="Assets\CollectableGem\Audio\GemCollectedAudioModifier.cs" />
      <Compile Include="Assets\CollectableGem\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
      <Compile Include="Assets\CollectableGem\Scripts\GemBehaviour.cs" />
      <Compile Include="Assets\CollectableGem\Scripts\Rotate.cs" />
-     <Compile Include="Assets\Elevator.cs" />
      <Compile Include="Assets\Monster\_Scripts\BeamController.cs" />
      <Compile Include="Assets\Monster\_Scripts\ChomperController.cs" />
      <Compile Include="Assets\Monster\_Scripts\DragonAttack.cs" />
@@ -119,10 +118,13 @@
      <Compile Include="Assets\Monster\_Scripts\GunnerController.cs" />
      <Compile Include="Assets\Monster\_Scripts\Hitenemy1Move.cs" />
      <Compile Include="Assets\Monster\_Scripts\ShotController.cs" />
+     <Compile Include="Assets\redBottle.cs" />
      <Compile Include="Assets\Script\BigView.cs" />
      <Compile Include="Assets\Script\Bullet.cs" />
      <Compile Include="Assets\Script\Ceiling.cs" />
+     <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\DoorOne.cs" />
+     <Compile Include="Assets\Script\Elevator.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\Key.cs" />
      <Compile Include="Assets\Script\PlayerMove.cs" />

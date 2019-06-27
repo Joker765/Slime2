@@ -14,6 +14,9 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rg;
 
+    RaycastHit2D hit1;
+    RaycastHit2D hit2;
+
     void Start()
     {
         ceiling = false;
@@ -25,12 +28,17 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rg = GetComponent<Rigidbody2D>();
+
+        hit1 = Physics2D.Raycast(lastPlace + new Vector2(-0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1 << 9);
+        hit2 = Physics2D.Raycast(lastPlace+ new Vector2(0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1 << 9);
+
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "ground")
+   private void OnCollisionEnter2D(Collision2D other)
+   {
+       if (other.gameObject.tag == "ground")
         {
+            if (hit1.transform != null || hit2.transform != null)
             jump = 2;
         }
     }
@@ -88,9 +96,12 @@ public class PlayerMove : MonoBehaviour
         else this.transform.localScale = new Vector3(0.19f, 0.19f, 1);
 
         Vector2 Pos = this.transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(Pos, new Vector2(0, -1), 0.6f, 1 << 8);
-        Debug.DrawRay(Pos, new Vector2(0, -0.6f), Color.red);
-        if (hit.transform != null)
+
+        hit1 = Physics2D.Raycast(Pos + new Vector2(-0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1<<9 );
+        Debug.DrawRay(Pos + new Vector2(-0.3f, 0), new Vector2(0, -0.5f), Color.red);
+        hit2 = Physics2D.Raycast(Pos + new Vector2(0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1 << 9);
+        Debug.DrawRay(Pos + new Vector2(0.3f, 0), new Vector2(0, -0.5f), Color.red);
+        if (hit1.transform != null || hit2.transform != null)
         {
             animator.SetBool("jump", false);
         }
@@ -102,6 +113,7 @@ public class PlayerMove : MonoBehaviour
         }
         lastPlace = this.transform.position;
     }
+
 
     private void Jump()
     {
