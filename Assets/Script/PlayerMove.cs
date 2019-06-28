@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public bool ceiling;
+    private AudioClip jumpAudio;
 
     private Vector2 lastPlace;
     private bool climb;
@@ -13,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rg;
+    private AudioSource audioSource;
 
     RaycastHit2D hit1;
     RaycastHit2D hit2;
@@ -22,9 +24,12 @@ public class PlayerMove : MonoBehaviour
         ceiling = false;
         climb = false;
 
+        jumpAudio = Resources.Load("Music/jump") as AudioClip;
         lastPlace = GameObject.Find("BirthPlace").transform.position;
         jumpTime = 0f;
         jump = 2;
+
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rg = GetComponent<Rigidbody2D>();
@@ -34,14 +39,14 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-   private void OnCollisionEnter2D(Collision2D other)
-   {
-       if (other.gameObject.tag == "ground")
-        {
-            if (hit1.transform != null || hit2.transform != null)
-            jump = 2;
-        }
-    }
+ //  private void OnCollisionEnter2D(Collision2D other)
+//   {
+  //     if (other.gameObject.tag == "ground")
+  //      {
+ //           if (hit1.transform != null || hit2.transform != null)
+  //          jump = 2;
+  //      }
+  //  }
 
     private void Climb()
     {
@@ -103,6 +108,7 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(Pos + new Vector2(0.3f, 0), new Vector2(0, -0.5f), Color.red);
         if (hit1.transform != null || hit2.transform != null)
         {
+            jump = 1;
             animator.SetBool("jump", false);
         }
         else 
@@ -127,6 +133,7 @@ public class PlayerMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
                 if (jump > 0)
                 {
+                    audioSource.PlayOneShot(jumpAudio);
                     GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400));
                     jump--;
                 }

@@ -14,7 +14,8 @@ public class Telescope : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<PlayerState>().telescope = true;
+            collision.GetComponent<PlayerState>().telescope ++;
+            GameController._instance.showTips("telescope");
             Destroy(this.gameObject);
         }
     }

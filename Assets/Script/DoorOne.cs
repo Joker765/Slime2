@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class DoorOne : MonoBehaviour
 {
+    private AudioSource audioSource;
 
     public Transform toDoor;
-    public GameObject tips;
     public float angleSpeed=10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,12 +30,12 @@ public class DoorOne : MonoBehaviour
         {
             if (collision.GetComponent<PlayerState>().key)
             {
+                audioSource.Play();
                 collision.transform.position = toDoor.position;
-                Destroy(this.gameObject);
             }
             else
             {
-                tips.SetActive(true);
+                GameController._instance.showTips("door");
             }
         }
 

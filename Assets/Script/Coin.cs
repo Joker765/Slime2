@@ -16,7 +16,7 @@ public class Coin : MonoBehaviour
 
         if (collision.tag == "Player")
         {
-
+            GameController._instance.addCollecter();
 
             Destroy(this.gameObject);
         }

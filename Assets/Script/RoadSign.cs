@@ -16,6 +16,7 @@ public class RoadSign : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            if (sceneId == 0) Application.Quit();
             SceneManager.LoadScene(sceneId);
         }
     }

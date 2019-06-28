@@ -13,10 +13,11 @@ public class PlayerState : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool shieldOn;
     private GameObject viewField;
+    private GameObject telescopeN;
 
     public bool key;
     public bool shield;
-    public bool telescope;
+    public int telescope;
     public Slider HpSlider;
     public Slider MpSlider;
     public GameObject leftShield;
@@ -27,15 +28,36 @@ public class PlayerState : MonoBehaviour
     {
         bullet = Resources.Load("bullet") as GameObject;
         viewField = GameObject.Find("CM vcam1");
+        telescopeN = GameObject.Find("telescopeN");
         spriteRenderer = GetComponent<SpriteRenderer>();
-        telescopeTime = 0f;
+        telescopeTime = 0;
         Hp = 100;
         Mp = 100;
         key = false;
         shield = false;
         shieldOn = false;
-        telescope = false;
+        telescope = 0;
     }
+
+
+    private void Telescope()
+    {
+        if (telescope > 0 && Input.GetKeyDown(KeyCode.T))
+        {
+            telescope--;
+            telescopeTime = 6f;
+            telescopeN.GetComponent<Text>().text = "x " + telescope;
+            viewField.GetComponent<CinemachineVirtualCamera>().m_Lens = new LensSettings(40f, 9f, 0.1f, 5000f, 0, false, 1);
+        }
+        else if (telescope > 0) telescopeN.GetComponent<Text>().text = "x " + telescope;
+
+        if (telescopeTime > 0)
+        {
+            telescopeTime -= Time.deltaTime;
+            if (telescopeTime <= 0) viewField.GetComponent<CinemachineVirtualCamera>().m_Lens = new LensSettings(40f, 6f, 0.1f, 5000f, 0, false, 1);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -62,11 +84,7 @@ public class PlayerState : MonoBehaviour
             rightShield.SetActive(false);
         }
 
-        if(telescope&& Input.GetKeyDown(KeyCode.T))
-        {
-            telescope = false;
-            viewField.GetComponent<CinemachineVirtualCamera>().m_Lens = new LensSettings(40f, 9f, 0.1f, 5000f, 0, false, 1);
-        }
+        Telescope();
 
         if (Input.GetKeyDown(KeyCode.Space) && !shieldOn)
             if (Mp >= 10)

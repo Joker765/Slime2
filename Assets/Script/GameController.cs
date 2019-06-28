@@ -6,8 +6,20 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 { 
     private int collecters;
+    private AudioSource audioSource;
+    private AudioClip coin;
+    private AudioClip get;
+    private GameObject coinsNumber;
+    private Rect rect;
+    private Texture2D d;
+    private Texture2D s;
+    private Texture2D t;
 
-    public Text collecterNumber;
+    private  Sprite sprite;
+    
+
+    public GameObject tips;
+
 
     public static GameController _instance; 
 
@@ -18,19 +30,48 @@ public class GameController : MonoBehaviour
         {
          _instance = this;
         }
-       
+        coinsNumber = GameObject.Find("Coins");
+        coin = Resources.Load("Music/coin") as AudioClip;
+        get = Resources.Load("Music/get") as AudioClip;
+        audioSource = GetComponent<AudioSource>();
         collecters = 0;
+
+        d = Resources.Load("doorTip") as Texture2D;
+        s = Resources.Load("shieldTip") as Texture2D;
+        t = Resources.Load("telescopeTip") as Texture2D;
+        rect = new Rect(0, 0, 1446, 800);
     }
 
     public void addCollecter()
     {
         collecters++;
-        collecterNumber.text = "toys number: " + collecters;
+        audioSource.PlayOneShot(coin);
+        coinsNumber.GetComponent<Text>().text = "coins: " + collecters;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void showTips(string name)
     {
-        
+        switch (name)
+        {
+            case "shield":
+                audioSource.PlayOneShot(get);
+                sprite = Sprite.Create(s, rect, new Vector2(0.5f, 0.5f));
+                tips.GetComponent<Image>().sprite = sprite;
+                tips.SetActive(true);
+                break;
+            case "door":
+                sprite= Sprite.Create(d, rect, new Vector2(0.5f, 0.5f));
+                tips.GetComponent<Image>().sprite =sprite;
+                tips.SetActive(true);
+                break;
+            case "telescope":
+                audioSource.PlayOneShot(get);
+                sprite = Sprite.Create(t, rect, new Vector2(0.5f, 0.5f));
+                tips.GetComponent<Image>().sprite = sprite;
+                tips.SetActive(true);
+                break;
+        }
     }
+
+
 }
