@@ -12,10 +12,18 @@ public class RoadSign : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Player")
+        {
+            GameController._instance.NextStage();
+        }
+    }
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
+           
             if (sceneId == 0) Application.Quit();
             SceneManager.LoadScene(sceneId);
         }

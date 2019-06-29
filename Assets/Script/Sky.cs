@@ -16,7 +16,7 @@ public class Sky : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-          
+            GameController._instance.Reborn();
             collider.transform.position = birthPlace.transform.position;
         }
        else if (collider.tag == "bullet")

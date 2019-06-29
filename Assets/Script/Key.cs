@@ -15,6 +15,7 @@ public class Key : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerState>().key = true;
+            GameController._instance.GetKey();
             Destroy(this.gameObject);
         }
     }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
+    private float deadTime;
     private float Hp;
     private float Mp;
     private float telescopeTime;
@@ -23,6 +25,8 @@ public class PlayerState : MonoBehaviour
     public GameObject leftShield;
     public GameObject rightShield;
 
+    public int sceneId=0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,7 @@ public class PlayerState : MonoBehaviour
         viewField = GameObject.Find("CM vcam1");
         telescopeN = GameObject.Find("telescopeN");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        deadTime = 0;
         telescopeTime = 0;
         Hp = 100;
         Mp = 100;
@@ -65,6 +70,12 @@ public class PlayerState : MonoBehaviour
         HpSlider.value = Hp / 100;
         MpSlider.value = Mp / 100;
 
+        if (Hp == -100)
+        {
+            deadTime += Time.deltaTime;
+            if (deadTime > 2f) PlayerDead();
+        }
+
         if (shield && Input.GetKeyDown(KeyCode.E)) shieldOn = !shieldOn;
 
         if(shieldOn)
@@ -96,12 +107,24 @@ public class PlayerState : MonoBehaviour
 
     public void ChangeHp(float change)
     {
+        if (Hp == -100) return;
         if (shieldOn && change<0)
         {
            Hp += change / 4;
         }
         else  Hp +=change;
-        if (Hp < 0) Hp = 0;
+        if (Hp < 0)
+        {
+            Hp = -100;
+            
+            GetComponent<AudioSource>().Play();
+            GetComponent<Animator>().SetTrigger("dead");
+        }
+    }
+
+    private void PlayerDead()
+    {
+        SceneManager.LoadScene(sceneId);
     }
 
     public void ChangeMp(float change)

@@ -29,7 +29,7 @@ public class ChomperController : MonoBehaviour
         runSpeed = 4.0f; //奔跑速度
         attackTime = 2.0f;//攻击间隔
         attackPause = 0;
-        hp = 40;
+        hp = 60;
         damage = 10;
         isAttack = false;
     }
@@ -149,6 +149,16 @@ public class ChomperController : MonoBehaviour
             animator.SetBool("Death", true);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "bullet")
+        {
+            Damage(40);
+            Destroy(other.gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player" && transform.localScale.x * collision.transform.localScale.x < 0)

@@ -9,6 +9,11 @@ public class GameController : MonoBehaviour
     private AudioSource audioSource;
     private AudioClip coin;
     private AudioClip get;
+    private AudioClip getbottle;
+    private AudioClip through;
+    private AudioClip reborn;
+    private AudioClip nextStage;
+
     private GameObject coinsNumber;
     private Rect rect;
     private Texture2D d;
@@ -33,6 +38,9 @@ public class GameController : MonoBehaviour
         coinsNumber = GameObject.Find("Coins");
         coin = Resources.Load("Music/coin") as AudioClip;
         get = Resources.Load("Music/get") as AudioClip;
+        getbottle = Resources.Load("Music/getbottle") as AudioClip;
+        reborn = Resources.Load("Music/reborn") as AudioClip;
+        nextStage = Resources.Load("Music/nextStage") as AudioClip;
         audioSource = GetComponent<AudioSource>();
         collecters = 0;
 
@@ -49,6 +57,27 @@ public class GameController : MonoBehaviour
         coinsNumber.GetComponent<Text>().text = "coins: " + collecters;
     }
 
+    public void Reborn()
+    {
+        audioSource.PlayOneShot(reborn);
+    }
+
+    public void GetKey()
+    {
+        audioSource.PlayOneShot(get);
+    }
+
+    public void NextStage()
+    {
+        audioSource.PlayOneShot(nextStage);
+    }
+
+
+    public void GetBottle()
+    {
+        audioSource.PlayOneShot(getbottle);
+    }
+
     public void showTips(string name)
     {
         switch (name)
@@ -60,7 +89,8 @@ public class GameController : MonoBehaviour
                 tips.SetActive(true);
                 break;
             case "door":
-                sprite= Sprite.Create(d, rect, new Vector2(0.5f, 0.5f));
+                audioSource.PlayOneShot(through);
+                sprite = Sprite.Create(d, rect, new Vector2(0.5f, 0.5f));
                 tips.GetComponent<Image>().sprite =sprite;
                 tips.SetActive(true);
                 break;

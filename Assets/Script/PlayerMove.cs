@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public bool ceiling;
+
+
     private AudioClip jumpAudio;
 
     private Vector2 lastPlace;
@@ -103,9 +105,9 @@ public class PlayerMove : MonoBehaviour
         Vector2 Pos = this.transform.position;
 
         hit1 = Physics2D.Raycast(Pos + new Vector2(-0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1<<9 );
-        Debug.DrawRay(Pos + new Vector2(-0.3f, 0), new Vector2(0, -0.5f), Color.red);
+        //Debug.DrawRay(Pos + new Vector2(-0.3f, 0), new Vector2(0, -0.5f), Color.red);
         hit2 = Physics2D.Raycast(Pos + new Vector2(0.3f, 0), new Vector2(0, -1), 0.5f, 1 << 8 | 1 << 9);
-        Debug.DrawRay(Pos + new Vector2(0.3f, 0), new Vector2(0, -0.5f), Color.red);
+       // Debug.DrawRay(Pos + new Vector2(0.3f, 0), new Vector2(0, -0.5f), Color.red);
         if (hit1.transform != null || hit2.transform != null)
         {
             jump = 1;
