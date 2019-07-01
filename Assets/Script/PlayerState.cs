@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class PlayerState : MonoBehaviour
 {
     private float deadTime;
-    private float Hp;
-    private float Mp;
+    public float Hp;
+    public float Mp;
     private float telescopeTime;
     private GameObject bullet;
     private SpriteRenderer spriteRenderer;

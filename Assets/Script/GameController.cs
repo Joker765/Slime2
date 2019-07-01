@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
-{ 
+{
+    public GameObject coins;
     private int collecters;
     private AudioSource audioSource;
     private AudioClip coin;
@@ -42,12 +44,15 @@ public class GameController : MonoBehaviour
         reborn = Resources.Load("Music/reborn") as AudioClip;
         nextStage = Resources.Load("Music/nextStage") as AudioClip;
         audioSource = GetComponent<AudioSource>();
-        collecters = 0;
+        collecters = Coins.StageCoinsNum;
+        coinsNumber.GetComponent<Text>().text = "coins: " + collecters;
+
 
         d = Resources.Load("doorTip") as Texture2D;
         s = Resources.Load("shieldTip") as Texture2D;
         t = Resources.Load("telescopeTip") as Texture2D;
         rect = new Rect(0, 0, 1446, 800);
+        archieveEnter();
     }
 
     public void addCollecter()
@@ -55,6 +60,44 @@ public class GameController : MonoBehaviour
         collecters++;
         audioSource.PlayOneShot(coin);
         coinsNumber.GetComponent<Text>().text = "coins: " + collecters;
+    }
+
+    public int getCollecter()
+    {
+        return collecters;
+    }
+    public void setCollecter(int col)
+    {
+        collecters = col;
+        coinsNumber.GetComponent<Text>().text = "coins: " + collecters;
+    }
+
+    private void archieveEnter()
+    {
+        DataOfPlayer dataOfPlayer = DataOfPlayer.getInstance(0, 0, Vector3.zero, 0, null, false);
+        if (dataOfPlayer != null && dataOfPlayer.isArchieve)
+        {
+            //设置人物位置
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<PlayerState>().Hp = dataOfPlayer.playerData.Hp;
+            player.GetComponent<PlayerState>().Mp = dataOfPlayer.playerData.Mp;
+            player.transform.position = dataOfPlayer.playerData.playerPosition;
+            setCollecter(dataOfPlayer.playerData.collectors);//设置硬币已经得到数
+            //重新设置硬币
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Coin");
+            foreach (GameObject i in gameObjects)
+                Destroy(i);
+            foreach (Vector3 i in dataOfPlayer.coins)
+            {
+                Instantiate(coins, i, Quaternion.identity);
+            }
+            dataOfPlayer.setArchieve(false);
+        }
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void Reborn()
@@ -69,6 +112,7 @@ public class GameController : MonoBehaviour
 
     public void NextStage()
     {
+        Coins.StageCoinsNum = collecters;
         audioSource.PlayOneShot(nextStage);
     }
 
