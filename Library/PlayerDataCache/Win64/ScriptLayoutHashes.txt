@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Joker/Desktop/Slime2.0/Slime.exe
+C:/Users/Joker/Desktop/Slime2.1/Slime.exe
 SceneListBegin?
 Assets/Scenes/SlimeMenu.unity
 Assets/Scenes/Login.unity
@@ -177,6 +177,7 @@ e63944317d2f5958e31963668bb29158 Assembly-CSharp.dll:TMPro.Examples.VertexJitter
 4ae39039bc3c2cbbf7581e49e45380d2 Assembly-CSharp.dll:.ChomperController
 e244702e0dc05782229aa524e4d757f5 Assembly-CSharp.dll:TMPro.Examples.TMP_ExampleScript_01
 f66c5abb945dada48d2efafbec53efa6 Assembly-CSharp.dll:Cinemachine.CinemachineTransposer
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.IceBox
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -274,4 +275,3 @@ da8366458db1921b8b704144b41c660f Assembly-CSharp.dll:.RetrievePassword3
 df6f7abc541508b47dc6c74522d44b98 Assembly-CSharp.dll:.ArcBack
 91a7d15c1419d1a27f9ac0d51899dd26 Assembly-CSharp.dll:.ManuManager
 294eabc360d3d214c61bb72bbebd99a6 Assembly-CSharp.dll:.fireWaveContro
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.IceBox
