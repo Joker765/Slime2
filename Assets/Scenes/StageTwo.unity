@@ -7186,21 +7186,6 @@ PrefabInstance:
       propertyPath: sceneId
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1459826133
-      objectReference: {fileID: 0}
-    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5804931604104267247, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
         type: 3}
       propertyPath: m_EdgeRadius
@@ -7215,6 +7200,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.x
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1459826133
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804931604104267245, guid: 9c609a1889d772a4dabde4c91e6c2ecf,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c609a1889d772a4dabde4c91e6c2ecf, type: 3}
@@ -7382,7 +7382,7 @@ PrefabInstance:
     - target: {fileID: 5680531577392010618, guid: c85941f69c868494eb811a466b0c8c3e,
         type: 3}
       propertyPath: sceneId
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 973810180, guid: c85941f69c868494eb811a466b0c8c3e, type: 3}
       propertyPath: m_RootOrder
@@ -9650,7 +9650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244329440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.718624, y: 0, z: 0}
+  m_LocalPosition: {x: -6.9686165, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1648614346}
@@ -10607,7 +10607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633640625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.645748, y: 0.35476685, z: -9}
+  m_LocalPosition: {x: -29.404255, y: 0.35476685, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1244329441}
